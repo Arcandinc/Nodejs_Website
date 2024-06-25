@@ -1,36 +1,30 @@
-var http = require("http");
-var fs = require("fs");
-var server = http.createServer( (req, res) =>{
+const express = require('express')
+const app = express()
+const port = 3000
 
-console.log(req.url);
+app.set("view engine" , "ejs");
 
-if (req.url == "/") {
-   fs.readFile("index.html", (err,html)=>{
-      
-      res.write(html);
-      res.end();
+const data =[
+  {id:1, name:"product-1", price: 24500, isActive:true},
+  {id:2, name:"product-2", price: 34500, isActive:false},
+  {id:3, name:"product-3", price: 44500, isActive:true}
+]
 
-   });
-}
-else if (req.url == "/products"){
-   fs.readFile("urunler.html", (err,html)=>{
-      
-      res.write(html);
-      res.end();
+app.get('/', (req, res) => {
+  res.render('index');
+})
 
-   });
-}
-else{
-   fs.readFile("404.html", (err,html)=>{
-      
-      res.write(html);
-      res.end();
+app.get('/products/:id', (req, res) => {
+  const list = data.find(u => u.id == req.params.id);
+  res.render("product-details", list);
+})
 
-   });
-   
-}
-} );
+app.get('/products', (req, res) => {
+  res.render('product', {
+    list: data
+  });
+})
 
-server.listen(3000 , () => {
-   console.log("node.js server at port 3000") 
-});
+app.listen(port, () => {
+  console.log(`listening on port ${port}`);
+})

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Product </h1>
+
+
+<ul>
+    <% list.forEach(data => { %>
+
+        <% if (data.price >= 30000 && data.isActive) { %>
+            <a href="products/<%=data.id%>">
+            <li> <%= data.name %> - <%= data.price %> </li>
+        </a>
+        <% } %>
+
+    <% }) %>
+
+</ul>
+
+</body>
+</html>

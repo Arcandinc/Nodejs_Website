@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Product</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+    <h1><%= name %></h1>
+    <p>fiyat : <%= price %></p>
+    <p>
+        <% if (isActive) { %>
+         <span>Ürün Satıştadır.</span>
+        <% } else {  %>
+            <span>Satışta Değildir.</span>
+            <% } %>
+    </p>
+    </body>
+</html>
